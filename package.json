@@ -1,0 +1,19 @@
+{
+  "name": "@cent/reglas",
+  "version": "1.0.0",
+  "description": "Reglas de negocio compartidas entre Cientemas-portal y cent-operation-system. Se distribuye como TypeScript sin compilar: cada app lo transpila con transpilePackages.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "files": [
+    "src"
+  ],
+  "exports": {
+    "./rotacion": "./src/rotacion.ts",
+    "./quejas-sla": "./src/quejas-sla.ts",
+    "./lista-movimientos": "./src/lista-movimientos.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/simonmareyna/cent-reglas.git"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "//": "Solo para editar cómodo y correr `npx tsc --noEmit`. Este paquete NO compila: se distribuye como TypeScript y cada app lo transpila con transpilePackages.",
+  "compilerOptions": {
+    "target": "ES2017",
+    "lib": ["ES2017", "DOM"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "strict": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": false
+  },
+  "include": ["src"]
+}

@@ -5,7 +5,7 @@ tools: Read, Grep, Glob, Edit, Write, Bash
 model: haiku
 ---
 
-<!-- rutas: cent-operation-system/src/app/rnd, cent-operation-system/src/app/api/rnd, cent-operation-system/src/lib/rnd.ts, cent-operation-system/src/lib/vicenta-rnd.ts, cent-operation-system/supabase/rnd-migration.sql, cent-operation-system/supabase/rnd-campana-migration.sql, cent-operation-system/supabase/rnd-notas-migration.sql, cent-operation-system/supabase/rnd-fases-5-12-migration.sql, cent-operation-system/src/app/adopcion, cent-operation-system/src/app/api/adopcion, cent-operation-system/src/lib/adopcion.ts -->
+<!-- rutas: cent-operation-system/src/app/rnd, cent-operation-system/src/app/api/rnd, cent-operation-system/src/lib/rnd.ts, cent-operation-system/src/lib/vicenta-rnd.ts, cent-operation-system/supabase/rnd-migration.sql, cent-operation-system/supabase/rnd-campana-migration.sql, cent-operation-system/supabase/rnd-notas-migration.sql, cent-operation-system/supabase/rnd-fases-5-12-migration.sql -->
 
 <!--
   Las tres últimas rutas de la línea de arriba son las de ANTES del renombre del 2026-08-11

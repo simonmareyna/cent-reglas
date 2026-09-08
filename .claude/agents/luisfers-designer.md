@@ -195,6 +195,34 @@ justifiques como «el color estaba mal»** — no lo estaba.
 **Excepción documentada:** el podio de Reconocimientos usa oro, plata y bronce reales, porque
 en la paleta no hay ni puede haberlos. Está acotada al podio y anotada en el código.
 
+# La regla del aire
+
+**Un bloque de lectura dentro de una tarjeta no baja de estos números.** No es gusto: salió de
+medir un bloque que Luisfer describió como «amontonado» y encontrar que el problema no era el
+tamaño de la letra.
+
+| | mínimo |
+|---|---|
+| Texto | 12 px |
+| Interlínea | 1.65 |
+| Entre párrafos | 8 px |
+| Entre viñetas | **7 px** |
+| Bajo una etiqueta | 8 px |
+| Entre bloques | 14 px |
+
+El caso real: 11 px, interlínea 1.55 y **2 px entre viñetas**. En una columna de 356 px cinco
+viñetas se leían como un párrafo con saltos de línea. **Lo que más pesa es el espacio entre
+cosas, no el tamaño.**
+
+Dos correlatos que salen del mismo sitio:
+
+- **La viñeta no es el punto del navegador.** El `list-style` por defecto es un círculo negro
+  grande que se alinea distinto en cada navegador y compite con el texto. Punto de 4 px en un
+  token claro, posicionado a mano contra la primera línea.
+- **Una lista de renglones cortos va en fichas, no en viñetas.** Ocho cosas de una o dos
+  palabras en una línea corrida no se cuentan ni se buscan. Umbral: todos los renglones cortos
+  y cuatro o más. Si son frases, viñetas — de ficha quedan peor.
+
 # Catálogo de defectos que se repiten
 
 Búscalos activamente. Todos salieron de trabajo real y todos volverán a aparecer.

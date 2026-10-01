@@ -59,7 +59,7 @@ export const MODULOS_PORTAL_CATALOGO = [
   { key: 'cultura',         label: 'Cultura',            conLlave: true, sujetos: ['rh'] },
   { key: 'comunicaciones',  label: 'Comunicados',        conLlave: true, sujetos: ['rh', 'colab'] },
   { key: 'encuestas',       label: 'Encuestas',          conLlave: true, sujetos: ['rh', 'colab'] },
-  { key: 'reconocimientos', label: 'Reconocimientos',    conLlave: true, sujetos: ['rh', 'colab'] },
+  { key: 'reconocimientos', label: 'Metas y reconocimientos', conLlave: true, sujetos: ['rh', 'colab'] },
   { key: 'desempeno',       label: 'Desempeño',          conLlave: true, sujetos: ['rh', 'colab'] },
   { key: 'ideas',           label: 'Buzón de ideas',     conLlave: true, sujetos: ['rh', 'colab'] },
   { key: 'nom035',          label: 'NOM-035',            conLlave: true, sujetos: ['rh', 'colab'] },

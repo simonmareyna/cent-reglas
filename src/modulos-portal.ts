@@ -43,7 +43,8 @@ export interface ModuloPortalCatalogo {
   sinPortal?: boolean
   /**
    * Solo-CENT: se enciende únicamente con `true` explícito y RH no puede encenderlo desde
-   * Ajustes. NO entra al universo del despliegue — no se le vende al cliente.
+   * Ajustes. NO entra al universo del despliegue. Hoy NINGÚN módulo lo es (el Canal lo fue
+   * del 2026-09-23 al 30); se conserva el campo para no reinventarlo si vuelve a hacer falta.
    */
   soloCent?: boolean
 }
@@ -68,7 +69,10 @@ export const MODULOS_PORTAL_CATALOGO = [
   { key: 'checador',        label: 'Checador',           conLlave: true, sujetos: ['rh', 'colab'] },
   { key: 'muro',            label: 'Muro',               conLlave: true, sujetos: ['rh', 'colab'] },
   { key: 'agenda',          label: 'Agenda',             conLlave: true, sujetos: ['rh', 'colab'] },
-  { key: 'canal',           label: 'Canal interno',      conLlave: true, sujetos: ['colab'], soloCent: true },
+  // Desde el 2026-09-30 (Simón) el Canal sigue la regla general: encendido salvo `false`, RH
+  // lo apaga desde Ajustes o /canal. Ya no es solo-CENT y entra al universo del despliegue.
+  // RH también lo usa: le contesta al colaborador en su canal «Recursos Humanos».
+  { key: 'canal',           label: 'Canal interno',      conLlave: true, sujetos: ['rh', 'colab'] },
 ] as const satisfies readonly ModuloPortalCatalogo[]
 
 export type ModuloPortalKey = (typeof MODULOS_PORTAL_CATALOGO)[number]['key']

@@ -63,7 +63,7 @@ export const BENEFICIOS_CATALOGO = [
   { clave: 'dental', nombre: 'Dental', emoji: '🦷', categoria: 'salud', slugPadre: THONA },
   { clave: 'odontologo-telefono', nombre: 'Odontólogo por teléfono', emoji: '☎️', categoria: 'salud', slugPadre: THONA },
   { clave: 'visual', nombre: 'Visual', emoji: '👓', categoria: 'salud', slugPadre: THONA },
-  { clave: 'lhogros', nombre: 'Terapia con Lhogros', emoji: '🧠', categoria: 'mente', slugPadre: 'psicologos-lhogros' },
+  { clave: 'lhogros', nombre: 'Tanatología e intervención en crisis — Lhogros', emoji: '🧠', categoria: 'mente', slugPadre: 'psicologos-lhogros' },
   { clave: 'psicologia-telefono', nombre: 'Psicología por teléfono', emoji: '💬', categoria: 'mente', slugPadre: THONA },
   { clave: 'seguro-vida', nombre: 'Seguro de vida por accidente', emoji: '❤️', categoria: 'familia', slugPadre: THONA },
   { clave: 'funeraria', nombre: 'Huella Funeraria 360', emoji: '🕊️', categoria: 'familia', slugPadre: THONA },

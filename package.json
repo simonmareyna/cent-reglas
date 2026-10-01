@@ -10,7 +10,9 @@
   "exports": {
     "./rotacion": "./src/rotacion.ts",
     "./quejas-sla": "./src/quejas-sla.ts",
-    "./lista-movimientos": "./src/lista-movimientos.ts"
+    "./lista-movimientos": "./src/lista-movimientos.ts",
+    "./modulos-portal": "./src/modulos-portal.ts",
+    "./beneficios": "./src/beneficios.ts"
   },
   "repository": {
     "type": "git",

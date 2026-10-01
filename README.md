@@ -25,6 +25,21 @@ que ser el mismo**. Con la regla en un solo lugar, no pueden separarse.
 | `@cent/reglas/rotacion` | Rotación mensual y anualizada. Qué mes es medible y cuál no (onboarding, ajuste de padrón, mes aproximado). |
 | `@cent/reglas/quejas-sla` | Plazos del canal de denuncias (3/7/15 días) y qué status cuenta como cerrado. |
 | `@cent/reglas/lista-movimientos` | Altas y bajas comparando la plantilla contra el snapshot del mes anterior. |
+| `@cent/reglas/modulos-portal` | El catálogo ÚNICO de módulos del portal (llave, label, sujetos RH/colaborador, solo-CENT, sobrevive sin portal) y `moduloPortalEncendido`. El portal arma Ajustes desde aquí; Vicenta arma Salud CiENTeMAS desde aquí. |
+| `@cent/reglas/beneficios` | Categorías de la red CiENTe+ y el catálogo mínimo de beneficios (clave, nombre, emoji, categoría, slugPadre). `categoriaDeBeneficio` clasifica un clic. |
+
+### Agregar un módulo o un beneficio
+
+Salud CiENTeMAS se ajusta sola, pero no en silencio:
+
+- **Módulo nuevo** en `MODULOS_PORTAL_CATALOGO`: el portal no compila hasta darle
+  descripción y rutas; Vicenta falla `npm run verify` (`check:salud-reglas`) hasta darle una
+  regla de medición por cada sujeto o declararlo «sin medición» con motivo. Mientras tanto,
+  en producción aparece como «encendido, sin medición (falta regla)»: cuenta en el
+  despliegue, nunca desaparece ni cuenta 0.
+- **Beneficio nuevo** en `BENEFICIOS_CATALOGO`: el portal falla `check:beneficios-catalogo`
+  si `BENEFICIOS_RED` no coincide. Una clave que llegue al tracking sin estar aquí se ve en
+  Salud como «sin clasificar» con su clave cruda.
 
 ## Cómo se consume
 
@@ -48,7 +63,7 @@ paquete busca eliminar.
 
 1. **Solo funciones puras.** Nada de Supabase, `fetch` ni variables de entorno. Las
    consultas se quedan en cada app; aquí vive la decisión, no la obtención de datos.
-2. **Sin dependencias.** Ninguno de los tres módulos importa nada.
+2. **Sin dependencias.** Ninguno de los módulos importa nada.
 3. **Salida JSON-serializable**: números, strings, booleanos, null, arreglos y objetos
    planos. Nunca una función. El portal pasa estos resultados de un Server Component a un
    Client Component, y una función en las props tumba la página en producción con

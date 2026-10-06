@@ -59,8 +59,14 @@ export const MODULOS_PORTAL_CATALOGO = [
   { key: 'cultura',         label: 'Cultura',            conLlave: true, sujetos: ['rh'] },
   { key: 'comunicaciones',  label: 'Comunicados',        conLlave: true, sujetos: ['rh', 'colab'] },
   { key: 'encuestas',       label: 'Encuestas',          conLlave: true, sujetos: ['rh', 'colab'] },
-  { key: 'reconocimientos', label: 'Metas y reconocimientos', conLlave: true, sujetos: ['rh', 'colab'] },
+  // Desde el 2026-10-06 las metas de cada persona salieron a Objetivos y el módulo vuelve a
+  // llamarse «Reconocimientos» (fue «Metas y reconocimientos» del 2026-09-30 al 10-06).
+  { key: 'reconocimientos', label: 'Reconocimientos',    conLlave: true, sujetos: ['rh', 'colab'] },
   { key: 'desempeno',       label: 'Desempeño',          conLlave: true, sujetos: ['rh', 'colab'] },
+  // Objetivos (2026-10-06): los KPI de cada persona, aprobados por su jefe, con presentaciones
+  // de resultados en la Agenda. RH los administra en /objetivos; el colaborador propone y
+  // reporta avance desde su hub («Mis objetivos»). Llave propia, separada de Desempeño.
+  { key: 'objetivos',       label: 'Objetivos',          conLlave: true, sujetos: ['rh', 'colab'] },
   { key: 'ideas',           label: 'Buzón de ideas',     conLlave: true, sujetos: ['rh', 'colab'] },
   { key: 'nom035',          label: 'NOM-035',            conLlave: true, sujetos: ['rh', 'colab'] },
   { key: 'capacitaciones',  label: 'Capacitaciones',     conLlave: true, sujetos: ['rh', 'colab'] },

@@ -38,13 +38,14 @@ export interface FilaCobranza {
 }
 
 /** Por qué un mes no cuenta para la rotación. `null` = sí cuenta. */
-export type MotivoNoMedible = 'primer_mes' | 'aproximado' | 'ajuste_padron'
+export type MotivoNoMedible = 'primer_mes' | 'sin_dato' | 'aproximado' | 'ajuste_padron'
 
 export interface PuntoRotacion {
   anio: number
   mes: number
   numTotal: number
   numAltas: number
+  /** `0` también cuando no hay dato: mira `motivoNoMedible === 'sin_dato'` antes de pintarlo. */
   numBajas: number
   /** % del mes: bajas / headcount promedio. `null` si el mes no es medible. */
   rotacionPct: number | null
@@ -71,7 +72,7 @@ export interface ResultadoRotacion {
   /** true si algún mes de la serie es aproximado. */
   tieneAproximados: boolean
   /** Cuántos meses quedaron fuera del cálculo y por qué. Para declararlo en la UI. */
-  excluidos: { aproximados: number; ajustesPadron: number }
+  excluidos: { aproximados: number; ajustesPadron: number; sinDato: number }
   /** La anualizada escala por `12/n`, así que con pocos meses medidos multiplica también
    *  el ruido: con n=3 el factor es 4, y dos salidas en una plantilla de 10 se convierten
    *  en "77% anual". Se marca cuando el factor es ≥4 (n ≤ 3) para que la UI lo presente
@@ -92,15 +93,23 @@ export function calcularRotacion(
     const total = row.num_total
     const bajas = row.num_bajas ?? 0
     const primerMes = prevTotal === null
+    const sinDato = row.num_bajas == null
     const aproximado = MESES_APROXIMADOS.has(`${row.anio}-${row.mes}`)
     const ajustePadron = row.es_ajuste_padron === true
 
     // Por qué un mes puede no ser medible, en orden de precedencia:
     //   primer_mes    → sus altas son el alta inicial en CiENTe+, no rotación.
+    //   sin_dato      → `num_bajas` vacío: no se capturó, no es que no hubo.
     //   ajuste_padron → CENT marcó que el movimiento fue corrección de padrón.
     //   aproximado    → las bajas se reconstruyeron como delta neto y quedaron en 0.
+    //
+    // `sin_dato` existe desde la auditoría del 2026-10-23: las bajas se capturan desde
+    // jun-2026, y los meses de antes entraban como medibles con 0 bajas. En ~20 empresas
+    // la anualizada salía entre la mitad y un tercio de la real (Tendencias y Conceptos
+    // 28% contra 87%), igual en el portal y en Vicenta porque las dos leen de aquí.
     const motivoNoMedible: MotivoNoMedible | null =
       primerMes ? 'primer_mes'
+      : sinDato ? 'sin_dato'
       : ajustePadron ? 'ajuste_padron'
       : aproximado ? 'aproximado'
       : null
@@ -159,6 +168,7 @@ export function calcularRotacion(
     excluidos: {
       aproximados:   serie.filter(p => p.motivoNoMedible === 'aproximado').length,
       ajustesPadron: serie.filter(p => p.motivoNoMedible === 'ajuste_padron').length,
+      sinDato:       serie.filter(p => p.motivoNoMedible === 'sin_dato').length,
     },
     extrapolado: ultimos.length > 0 && ultimos.length <= 3,
   }

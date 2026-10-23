@@ -74,7 +74,7 @@ export const BENEFICIOS_CATALOGO = [
   { clave: 'legal-telefono', nombre: 'Asesoría legal por teléfono', emoji: '⚖️', categoria: 'casa', slugPadre: THONA },
   { clave: 'hogar', nombre: 'Plomería, carpintería y electricidad', emoji: '🔧', categoria: 'casa', slugPadre: THONA },
   { clave: 'pc', nombre: 'Orientación técnica de computadora', emoji: '🖥️', categoria: 'casa', slugPadre: THONA },
-  { clave: 'internet', nombre: 'Internet para el Bienestar', emoji: '📱', categoria: 'casa', slugPadre: 'sim-datos' },
+  { clave: 'internet', nombre: 'Dalefon', emoji: '📱', categoria: 'casa', slugPadre: 'sim-datos' },
   { clave: 'red-medica-descuentos', nombre: 'Red médica de descuentos', emoji: '🏷️', categoria: 'descuentos', slugPadre: THONA },
   { clave: 'ciente-descuentos', nombre: 'CiENTe+ Descuentos', emoji: '🎟️', categoria: 'descuentos', slugPadre: 'ciente-descuentos' },
 ] as const satisfies readonly BeneficioCatalogo[]

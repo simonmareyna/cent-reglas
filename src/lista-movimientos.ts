@@ -50,6 +50,13 @@ export function claveEmpleado(e: Comparable): string {
 /**
  * Compara la membresía del mes anterior contra la actual.
  *
+ * Dos pasadas. Primero se emparejan por id de empleado los renglones que lo tienen en
+ * los dos lados: es la MISMA persona aunque su RFC haya cambiado. Pasó en Sistema Ópalo
+ * (nov-2026): RH corrigió un RFC con error de dedo y, comparando solo por RFC, una
+ * persona que nunca se fue contó como una baja y una alta. Lo que queda sin pareja se
+ * compara por `claveEmpleado` (RFC primero), que cubre el snapshot sin id por
+ * `ON DELETE SET NULL`.
+ *
  * @param snapshotPrev renglones de `portal_lista_empleados` de la lista previa
  * @param activos      plantilla activa de hoy
  */
@@ -57,8 +64,14 @@ export function compararMembresia(
   snapshotPrev: Comparable[],
   activos: Comparable[],
 ): Movimientos {
-  const clavesPrev = Array.from(new Set(snapshotPrev.map(claveEmpleado)))
-  const clavesActual = Array.from(new Set(activos.map(claveEmpleado)))
+  const idDe = (e: Comparable): string => (e.empleado_id ?? e.id ?? '').trim()
+  const idsPrev = new Set(snapshotPrev.map(idDe).filter(Boolean))
+  const idsActual = new Set(activos.map(idDe).filter(Boolean))
+  const restoPrev = snapshotPrev.filter(e => !idsActual.has(idDe(e)))
+  const restoActual = activos.filter(e => !idsPrev.has(idDe(e)))
+
+  const clavesPrev = Array.from(new Set(restoPrev.map(claveEmpleado)))
+  const clavesActual = Array.from(new Set(restoActual.map(claveEmpleado)))
   const setPrev = new Set(clavesPrev)
   const setActual = new Set(clavesActual)
 
